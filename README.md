@@ -16,3 +16,13 @@ An interactive C# console application designed to teach cybersecurity fundamenta
  ## Continuous Integration (CI)
 
 ![Build Status](ci-build.png)
+
+
+https://youtu.be/HJRnQDhrOZo
+
+## 📹 Video Presentation
+
+Watch the 8-minute technical walkthrough and live demonstration on YouTube:
+[![Cybersecurity Awareness Bot Presentation](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+
+**Direct Link:** [Watch Video Presentation on YouTube](https://youtu.be/HJRnQDhrOZo)
