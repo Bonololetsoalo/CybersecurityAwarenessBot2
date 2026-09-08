@@ -28,7 +28,7 @@ namespace CybersecurityAwarenessBot
             _currentUser = new User(rawName);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"\nWelcome, {_currentUser.Name}! Ask me any cybersecurity question or type 'exit' to quit.");
+            Console.WriteLine($"\nWelcome, {_currentUser.Name}! Ask me any cybersecurity question about passwords, phishing, safe browsing, or my purpose. or type 'exit' to quit.");
             Console.ResetColor();
 
             ChatLoop();
