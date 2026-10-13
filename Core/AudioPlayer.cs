@@ -5,17 +5,15 @@ using System.Runtime.InteropServices;
 
 namespace CybersecurityAwarenessBot.Core
 {
-    // A static class responsible for playing audio files in the application
     public static class AudioPlayer
     {
         public static void PlayGreetingSound()
         {
             try
             {
-           
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    string soundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "welcome.wav.wav ");
+                    string soundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "welcome.wav.wav");
                     if (File.Exists(soundPath))
                     {
                         using (SoundPlayer player = new SoundPlayer(soundPath))
@@ -27,7 +25,7 @@ namespace CybersecurityAwarenessBot.Core
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[Audio Warning]: Could not play greeting audio. ({ex.Message})");
+                System.Diagnostics.Debug.WriteLine($"[Audio Warning]: Could not play greeting audio. ({ex.Message})");
             }
         }
     }
