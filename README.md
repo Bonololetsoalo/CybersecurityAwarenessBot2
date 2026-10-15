@@ -1,4 +1,4 @@
-# ybersecurity Awareness Bot
+# Cybersecurity Awareness Bot
 
 An interactive C# console application designed to teach cybersecurity fundamentals.
 
