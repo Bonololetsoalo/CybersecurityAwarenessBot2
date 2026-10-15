@@ -21,7 +21,7 @@ An interactive C# console application designed to teach cybersecurity fundamenta
 
 https://youtu.be/Qve__N80_Nc
 
-## 📹 Video Presentation
+## Video Presentation
 
 Watch the 6-minute technical walkthrough and live demonstration on YouTube for Part 2:
 
