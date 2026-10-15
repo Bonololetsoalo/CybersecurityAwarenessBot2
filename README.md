@@ -1,10 +1,11 @@
-# Cybersecurity Awareness Bot
+# ybersecurity Awareness Bot
 
 An interactive C# console application designed to teach cybersecurity fundamentals.
 
 ## Features
 - Interactive quiz engine and response manager
 - Custom ASCII graphics and colored UI
+- WPF & XAML user interface
 - Custom audio greeting player
 
 ## Setup & Execution
@@ -18,15 +19,14 @@ An interactive C# console application designed to teach cybersecurity fundamenta
 ![Build Status](ci-build.png)
 
 
-https://youtu.be/HJRnQDhrOZo
+https://youtu.be/Qve__N80_Nc
 
 ## 📹 Video Presentation
 
-Watch the 8-minute technical walkthrough and live demonstration on YouTube:
-[![Cybersecurity Awareness Bot Presentation](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+Watch the 6-minute technical walkthrough and live demonstration on YouTube for Part 2:
 
-**Direct Link:** [Watch Video Presentation on YouTube](https://youtu.be/HJRnQDhrOZo)
+**Direct Link:** [Watch Video Presentation on YouTube](https://youtu.be/Qve__N80_Nc)
 
 git add README.md
-git commit -m "https://youtu.be/HJRnQDhrOZo"
-git push origin main
+git commit -m "https://youtu.be/Qve__N80_Nc"
+git push origin mainC
