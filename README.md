@@ -24,7 +24,7 @@ An interactive C# console application designed to teach cybersecurity fundamenta
 ![Build Status](ci-build.png)
 
 
-https://youtu.be/Qve__N80_Nc
+(https://youtu.be/qf9KdtqV7jk)
 
 ## Video Presentation
 
