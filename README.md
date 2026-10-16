@@ -7,6 +7,11 @@ An interactive C# console application designed to teach cybersecurity fundamenta
 - Custom ASCII graphics and colored UI
 - WPF & XAML user interface
 - Custom audio greeting player
+- Different colors for the bot and user
+- Memory recall
+- Conversation flow
+- Sentiment Detection
+- Error handling
 
 ## Setup & Execution
 1. Clone the repository:
@@ -25,8 +30,8 @@ https://youtu.be/Qve__N80_Nc
 
 Watch the 6-minute technical walkthrough and live demonstration on YouTube for Part 2:
 
-**Direct Link:** [Watch Video Presentation on YouTube](https://youtu.be/Qve__N80_Nc)
+**Direct Link:** [Watch Video Presentation on YouTube](https://youtu.be/qf9KdtqV7jk)
 
 git add README.md
-git commit -m "https://youtu.be/Qve__N80_Nc"
+git commit -m "https://youtu.be/qf9KdtqV7jk"
 git push origin mainC
