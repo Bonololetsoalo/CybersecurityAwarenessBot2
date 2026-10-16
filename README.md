@@ -28,7 +28,7 @@ https://youtu.be/Qve__N80_Nc
 
 ## Video Presentation
 
-Watch the 6-minute technical walkthrough and live demonstration on YouTube for Part 2:
+Watch the 8-minute technical walkthrough and live demonstration on YouTube for Part 2:
 
 **Direct Link:** [Watch Video Presentation on YouTube](https://youtu.be/qf9KdtqV7jk)
 
