@@ -1,6 +1,11 @@
-﻿using System.Windows;
+﻿using System;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
-using CybersecurityAwarenessBot.Core;
+using System.Windows.Media;
+using CybersecurityAwarenessBot.Core; // Ensure this matches your AudioPlayer namespace
 using CybersecurityAwarenessBot.Models;
 using CybersecurityAwarenessBot.Services;
 
@@ -8,72 +13,101 @@ namespace CybersecurityAwarenessBot
 {
     public partial class MainWindow : Window
     {
-        private User _user;
-        private ResponseManager _responseManager;
-        private bool _isNameSet = false;
+        private User currentUser;
+        private ResponseManager responseManager;
+        private bool isNameEntered = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            _user = new User("Guest User");
-            _responseManager = new ResponseManager(_user);
 
-            // Audio greeting trigger
-            AudioPlayer.PlayGreetingSound();
+            currentUser = new User("User");
+            responseManager = new ResponseManager(currentUser);
 
-            AppendBotMessage("Bot: Welcome to the Cybersecurity Awareness Bot! Enter your name to start:");
+            // Triggers the startup audio greeting
+            AudioPlayer.PlayGreeting();
+
+            AppendBotMessage("Welcome to the Cybersecurity Awareness Bot! Enter your name to start:");
         }
 
-        private void BtnSend_Click(object sender, RoutedEventArgs e)
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            ProcessInput();
+            await ProcessUserInput();
         }
 
-        private void TxtUserInput_KeyDown(object sender, KeyEventArgs e)
+        private async void InputTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                ProcessInput();
+                await ProcessUserInput();
             }
         }
 
-        private void ProcessInput()
+        private async Task ProcessUserInput()
         {
-            string input = TxtUserInput.Text.Trim();
-            if (string.IsNullOrEmpty(input)) return;
+            string userInput = InputTextBox.Text.Trim();
+            if (string.IsNullOrEmpty(userInput)) return;
 
-            AppendUserMessage($"You: {input}");
-            TxtUserInput.Clear();
-
-            if (!_isNameSet)
+            if (!isNameEntered)
             {
-                _user.Name = input;
-                _isNameSet = true;
-                AppendBotMessage($"Bot: Welcome, {_user.Name}! Ask me any cybersecurity question about passwords, phishing, safe browsing, or my purpose. Type 'exit' when you are done.");
+                currentUser.Name = userInput;
+                isNameEntered = true;
+
+                AppendUserMessage(userInput);
+                InputTextBox.Clear();
+
+                AppendBotMessage($"Hello, {currentUser.Name}! How can I help you with cybersecurity today? " +
+                    $"Type 'exit' when you are done");
                 return;
             }
 
-            if (input.Equals("exit", System.StringComparison.OrdinalIgnoreCase) ||
-                input.Equals("quit", System.StringComparison.OrdinalIgnoreCase))
+            AppendUserMessage(userInput);
+            InputTextBox.Clear();
+
+            if (userInput.Equals("exit", StringComparison.OrdinalIgnoreCase))
             {
-                AppendBotMessage($"Bot: Goodbye, {_user.Name}! Stay safe online!");
+                AppendBotMessage($"Goodbye, {currentUser.Name}! Stay safe online. " +
+                    $"Closing chat...");
+
+                InputTextBox.IsEnabled = false;
+                if (FindName("SendButton") is Button btn) btn.IsEnabled = false;
+
+                await Task.Delay(2000);
+
+                this.Close();
                 return;
             }
 
-            string response = _responseManager.GetResponse(input);
-            AppendBotMessage($"Bot: {response}");
+            string botResponse = responseManager.GetResponse(userInput);
+            AppendBotMessage(botResponse);
         }
 
         private void AppendUserMessage(string message)
         {
-            TxtChatOutput.Text += $"{message}\n\n";
-            ChatScrollViewer.ScrollToBottom();
+            Paragraph p = new Paragraph();
+            Brush userBrush = new SolidColorBrush(Color.FromRgb(37, 211, 102)); // WhatsApp Green
+
+            Run tagRun = new Run($"{currentUser.Name ?? "User"}: ") { Foreground = userBrush, FontWeight = FontWeights.Bold };
+            Run textRun = new Run(message) { Foreground = userBrush };
+
+            p.Inlines.Add(tagRun);
+            p.Inlines.Add(textRun);
+            ChatDisplay.Document.Blocks.Add(p);
+            ChatDisplay.ScrollToEnd();
         }
 
         private void AppendBotMessage(string message)
         {
-            TxtChatOutput.Text += $"{message}\n\n";
-            ChatScrollViewer.ScrollToBottom();
+            Paragraph p = new Paragraph();
+            Brush botBrush = new SolidColorBrush(Color.FromRgb(255, 215, 0)); // Gold
+
+            Run tagRun = new Run("Bot: ") { Foreground = botBrush, FontWeight = FontWeights.Bold };
+            Run textRun = new Run(message) { Foreground = botBrush };
+
+            p.Inlines.Add(tagRun);
+            p.Inlines.Add(textRun);
+            ChatDisplay.Document.Blocks.Add(p);
+            ChatDisplay.ScrollToEnd();
         }
     }
 }

@@ -1,31 +1,25 @@
 ﻿using System;
 using System.IO;
 using System.Media;
-using System.Runtime.InteropServices;
 
-namespace CybersecurityAwarenessBot.Core
+namespace CybersecurityAwarenessBot.Core // (Match your actual namespace)
 {
     public static class AudioPlayer
     {
-        public static void PlayGreetingSound()
+        public static void PlayGreeting()
         {
             try
             {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "welcome.wav.wav");
+                if (File.Exists(path))
                 {
-                    string soundPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "welcome.wav.wav");
-                    if (File.Exists(soundPath))
-                    {
-                        using (SoundPlayer player = new SoundPlayer(soundPath))
-                        {
-                            player.Play();
-                        }
-                    }
+                    SoundPlayer player = new SoundPlayer(path);
+                    player.Play();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Diagnostics.Debug.WriteLine($"[Audio Warning]: Could not play greeting audio. ({ex.Message})");
+                // Prevent crashes if audio fails
             }
         }
     }
